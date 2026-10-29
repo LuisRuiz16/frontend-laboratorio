@@ -1,0 +1,12 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const raw = process.env.API_BASE_URL;
+if (!raw) throw new Error('Defina API_BASE_URL con la URL pública del backend en Render.');
+const url = new URL(raw);
+if (url.protocol !== 'https:') throw new Error('El backend publicado debe usar HTTPS.');
+if (url.username || url.password || url.search || url.hash) throw new Error('API_BASE_URL debe ser una URL pública sin credenciales ni parámetros.');
+const out = path.join(__dirname, 'dist');
+fs.mkdirSync(out, { recursive: true });
+for (const file of ['index.html', 'app.js', 'styles.css']) fs.copyFileSync(path.join(__dirname, file), path.join(out, file));
+fs.writeFileSync(path.join(out, 'config.js'), 'window.LAB_CONFIG = ' + JSON.stringify({apiBaseUrl: url.href.replace(/\/$/, ''), environment:'cloud'}) + ';\n');
+console.log('Frontend preparado en dist. API:', url.href);
