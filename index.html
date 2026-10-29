@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio de despliegue en la nube</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="card">
+    <p class="eyebrow">INTRANET · PRÁCTICA DE DESPLIEGUE</p>
+    <h1>Una página.<br>Una API conectada.</h1>
+    <p class="intro">Consulta un backend de Node.js y Express desde una interfaz web independiente.</p>
+    <div class="architecture" aria-label="Arquitectura del laboratorio">
+      <div><small>FRONTEND</small><strong>Vercel</strong><span>HTML · CSS · JavaScript</span></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div><small>BACKEND</small><strong>Render</strong><span>Node.js · Express · JSON</span></div>
+    </div>
+    <p id="entorno" class="environment"></p>
+    <p class="endpoint">Destino de la consulta <code id="endpoint"></code></p>
+    <button id="consultar" type="button">Consultar backend <span aria-hidden="true">↗</span></button>
+    <section class="response" aria-labelledby="response-title">
+      <div class="response-heading"><h2 id="response-title">Respuesta de la API</h2><span id="estado">Sin consultar</span></div>
+      <pre id="resultado" aria-live="polite">Presione el botón para consultar la API.</pre>
+      <p id="detalle" class="detail">La respuesta se obtiene mediante una solicitud HTTP GET.</p>
+    </section>
+    <footer>Laboratorio de frontend y backend · Curso de Intranet</footer>
+  </main>
+</body>
+</html>
